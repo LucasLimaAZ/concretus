@@ -20,10 +20,10 @@ if(!$producao){
 
     return [
         'database' => [
-            'name' => 'DBNAME',
-            'username' => 'DBUSERNAME',
-            'password' => 'DBPASSWORD',
-            'connection' => 'mysql:host=DBHOST',
+            'name' => 'sis_concretus',
+            'username' => 'sis_concretus',
+            'password' => 'conc_sis@2020',
+            'connection' => 'mysql:host=sis_concretus.mysql.dbaas.com.br',
             'options' => [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ]

@@ -14,7 +14,7 @@
             <div class="col-xs-11 center-header">
                 <div class="col-xs-4 offset-xs-8 user-text">
                     <span class="nome"><?=$_SESSION['nome'];?></span><br>
-                    <span class="funcao">Cliente: <?=$_SESSION['cliente'];?></span>
+                    <span class="funcao">Cliente: <?= $_SESSION['cliente'] ?? "NÃO POSSUI" ?></span>
                 </div>
             </div>
             <div class="col-xs-1 user-area dropdown">

@@ -10,6 +10,7 @@ $router->get("$folder/recuperar-senha", 'UsersController@recuperarSenha');
 $router->post("$folder/marcar-lido", 'ArquivosController@marcarLido');
 $router->post("$folder/arquivar", 'ArquivosController@arquivar');
 $router->post("$folder/desarquivar", 'ArquivosController@desarquivar');
+$router->post("$folder/excluir", 'ArquivosController@excluir');
 
 $router->post("$folder/enviar-email", 'EmailController@enviar');
 $router->post("$folder/atualizar-senha", 'UsersController@atualizarSenha');

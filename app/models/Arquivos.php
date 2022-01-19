@@ -49,7 +49,7 @@ class Arquivos extends Model
             $pasta = opendir("public/files/".$_SESSION['cnpj']."/".$_SESSION['sirius']);
 
         }else{
-            die('A pasta do cliente não foi encontrada! <br><a href="logout">Sair</a>');
+            die('O diretório contendo os arquivos deste usuário não foi encontrado! <br><a href="logout">Sair</a>');
         }
 
         $arquivos = [];
@@ -105,11 +105,18 @@ class Arquivos extends Model
         App::get('database')->update(static::$table, $dados, $where = ['id', $arquivo['id']]);
     }
 
-    public static function encontrar($where){
+    public static function encontrar($where)
+    {
 
         $result = App::get('database')->selectWhere(static::$table, $where);
         return $result;
 
+    }
+
+    public static function excluir($arquivo) 
+    {
+        $res = App::get("database")->delete(static::$table, ['id', $arquivo['id']]);
+        return $res;
     }
 
 }

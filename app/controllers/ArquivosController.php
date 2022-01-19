@@ -90,4 +90,13 @@ class ArquivosController extends Controller
 
         return $this->responderJSON($arquivo);
     }
+
+    public function excluir()
+    {
+        $arquivo = $_POST;
+
+        Arquivos::excluir($arquivo);
+
+        return $this->responderJSON($arquivo);
+    }
 }

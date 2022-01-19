@@ -105,8 +105,7 @@ class QueryBuilder
             $statement = $this->pdo->prepare($sql)->execute();
             return $statement;
         } catch (PDOException $e) {
-            echo 'Erro ao deletar. Código: ' . $e->getMessage();
-
+            die('Erro ao deletar. Código: ' . $e->getMessage());
         }
     }
     
