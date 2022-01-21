@@ -1,7 +1,6 @@
 $("#arquivados").hide();
 
 $(document).ready(() => {
-
     $('#tabelaArquivos').DataTable({
         "order": [[0, "desc"]],
         "language":{
@@ -55,103 +54,91 @@ $(document).ready(() => {
             }
         }
     });
-
 });
 
-function marcarLido(arquivo){
-
+function marcarLido(arquivo) {
     var arquivos = {id: arquivo.id};
 
     $.post('marcar-lido', arquivos, response => {
-
         dados = JSON.parse(response);
-
         id = dados.id;
-
         $(`#leitura-${id}`).html('Lido');
-
     });
-
 }
 
-function arquivar(arquivo){
-
+function arquivar(arquivo) {
     var r = window.confirm("Você realmente deseja arquivar este documento?");
 
     if(r == true){
-
         var arquivos = {id: arquivo.id};
 
         $.post('arquivar', arquivos, response => {
-    
             dados = JSON.parse(response);
-    
             $(`#arquivo-${dados.id}`).hide(300);
-    
         });
     
     }
-    
 }
 
-function desarquivar(arquivo){
-
+function desarquivar(arquivo) {
     var arquivos = {id: arquivo.id};
 
     $.post('desarquivar', arquivos, response => {
-
         dados = JSON.parse(response);
-
         $(`#arquivo-${dados.id}`).hide(300);
-
     });
+}
 
+function excluir(arquivo, cnpj, sirius, fileName) {
+    var arquivos = { id: arquivo.id };
+    var confirmation = window.confirm(
+      "Tem certeza de que deseja excluir o registro deste arquivo? Esta ação é permanente."
+    );
+  
+    if (confirmation == true) {
+      $.post("excluir", { arquivos, cnpj, sirius, fileName }, (response) => {
+        dados = JSON.parse(response);
+        $(`#arquivo-${dados.arquivos.id}`).hide(300);
+      });
+    }
 }
 
 $('#mostrar-entrada').click(() => {
-
     $('#arquivados').hide();
     $('#entrada').fadeIn(300);
-
 });
 
 $('#mostrar-arquivados').click(() => {
-
     $('#arquivados').fadeIn(300);
     $('#entrada').hide();
-
 });
 
-function marker(obj)
-{
+function marker(obj) {
     id = obj.id;
-
     $(`#marker-${id}`).toggle(200);
 }
 
-function trocarMarcador(obj)
-{
+function trocarMarcador(obj) {
     let retorno = obj.id.split('/');
-
     let id = retorno[0];
     let marcador = retorno[1];
-
     let dados = {id: id, marcador: marcador};
 
     $.post('trocar-marcador', dados, response => {
         console.log(response);
     });
+
     $(`#marker-${id}`).toggle(200);
     $(`.marker-value-${id}`).html(`<i class="fa fa-tag"></i> `+marcador);
 }
 
-$(".marker-close").click(()=>{
+$(".marker-close").click(() => {
     $(".marker-dropdown").hide(200);
 });
 
 $("tr .Mais um").hide(1000);
 
-$("#selecionar-marcador").change(()=>{
+$("#selecionar-marcador").change(() => {
    let selected = $("#selecionar-marcador").children("option:selected").val();
    $("tr").hide();
    $(`.${selected}`).show();

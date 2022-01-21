@@ -42,6 +42,7 @@
                                                     <th>Marcador</th>
                                                     <th>Exibir</th>
                                                     <th>Arquivar</th>
+                                                    <th>Excluir</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -83,6 +84,15 @@
                                                                     <td>
                                                                         <a id="<?=$arquivo->id;?>" onclick="arquivar(this);" href="#">
                                                                             <img src="public/assets/img/arquivar.png" width="30px">
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a 
+                                                                            id="<?=$arquivo->id;?>" 
+                                                                            onclick="excluir(this, '<?=$cliente[0]->cnpj?>', <?=$usuario[0]->sirius?>, '<?=$arquivo->nome?>');" 
+                                                                            href="#"
+                                                                        >
+                                                                            <img src="public/assets/img/excluir.png" width="20px">
                                                                         </a>
                                                                     </td>
                                                                 </tr>
