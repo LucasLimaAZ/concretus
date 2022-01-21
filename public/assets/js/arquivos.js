@@ -47,18 +47,16 @@ function arquivar(arquivo) {
   });
 }
 
-function excluir(arquivo) {
+function excluir(arquivo, cnpj, sirius, fileName) {
   var arquivos = { id: arquivo.id };
   var confirmation = window.confirm(
     "Tem certeza de que deseja excluir o registro deste arquivo? Esta ação é permanente."
   );
-  console.log("arquivo id", arquivo.id);
 
   if (confirmation == true) {
-    $.post("excluir", arquivos, (response) => {
+    $.post("excluir", { arquivos, cnpj, sirius, fileName }, (response) => {
       dados = JSON.parse(response);
-      $(`#arquivo-${dados.id}`).hide(300);
-      console.log("dados id", dados.id);
+      $(`#arquivo-${dados.arquivos.id}`).hide(300);
     });
   }
 }

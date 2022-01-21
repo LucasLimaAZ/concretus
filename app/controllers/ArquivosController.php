@@ -93,10 +93,16 @@ class ArquivosController extends Controller
 
     public function excluir()
     {
-        $arquivo = $_POST;
+        $data = $_POST;
 
-        Arquivos::excluir($arquivo);
+        Arquivos::excluir($data["arquivos"]);
+        try {
+            unlink("public/files/".$data["cnpj"]."/".sprintf('%05d', $data["sirius"])."/".$data["fileName"]);
+        } catch (Exception $e) {
+            return $this->responderJSON("Erro ao excluir arquivo: ".$e->getMessage());
+        }
+        
 
-        return $this->responderJSON($arquivo);
+        return $this->responderJSON($data);
     }
 }

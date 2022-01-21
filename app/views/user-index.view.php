@@ -101,7 +101,11 @@
                                                                         </a>
                                                                     </td>
                                                                     <td>
-                                                                        <a id="<?=$arquivo->id;?>" onclick="excluir(this);" href="#">
+                                                                        <a 
+                                                                            id="<?=$arquivo->id;?>" 
+                                                                            onclick="excluir(this, <?=$_SESSION['cnpj']?>, <?=$_SESSION['sirius']?>, '<?=$arquivo->nome?>');" 
+                                                                            href="#"
+                                                                        >
                                                                             <img src="public/assets/img/excluir.png" width="20px">
                                                                         </a>
                                                                     </td>
