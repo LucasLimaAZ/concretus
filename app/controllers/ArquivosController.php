@@ -97,9 +97,10 @@ class ArquivosController extends Controller
 
         Arquivos::excluir($data["arquivos"]);
         try {
-            unlink("public/files/".$data["cnpj"]."/".sprintf('%05d', $data["sirius"])."/".$data["fileName"]);
+            @unlink("public/files/".$data["cnpj"]."/".sprintf('%05d', $data["sirius"])."/".$data["fileName"]);
         } catch (Exception $e) {
-            return $this->responderJSON("Erro ao excluir arquivo: ".$e->getMessage());
+            $data["Erro"] = "Erro ao excluir arquivo: ".$e->getMessage();
+            return $this->responderJSON($data);
         }
         
 
